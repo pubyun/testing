@@ -2,5 +2,5 @@
 
 from datetime import datetime
 
-print "hello world!"
+print "hello world, ppyy!"
 print "datetime: %s" % datetime.now()
