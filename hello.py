@@ -2,6 +2,7 @@
 
 from datetime import datetime, date
 
+print "begin"
 print "hello world, ppyy!"
 print "hello world!"
 print "datetime: %s" % datetime.now()
