@@ -1,0 +1,84 @@
+Gerrit和git的流程
+
+0、资源：
+
+ssh://git@git.bitcomm.cn:2203/pubyun.git
+http://review.openstack.org
+ 
+
+1、注册帐号
+
+在 http://review.openstack.org 注册用户，采用的是openid，直接使用公司的google邮箱就可以了。
+
+注册的时候，注意:
+
+-- 设置自己的用户名，这个后面授权需要用到，比如我选择的是 refactor
+-- 导入自己的公钥，这个在 git 进行 review操作的时候，授权需要用到
+
+注册完了以后，可以看到 testing 项目，其余的项目，联系项目经理进行授权，将下面的信息发送给项目经理：
+
+注册的邮箱、ssh公钥和对应的项目
+
+
+2、工具
+
+由于目前git的命令行功能和稳定性比图形界面的egit等强，大家在代码递交时，还是使用Windows或者Linux的命令行，windows下可以采用：
+
+http://msysgit.github.com
+ 
+
+3、导出项目，进行设置
+
+配置递交代码人信息：
+git config --global user.name "Peng Yong"
+git config --global user.email ppyy@pubyun.com
+
+从git取出代码：
+git clone ssh://git@git.bitcomm.cn:2203/testing.git
+注意选用自己需要的项目名称替代 testing
+
+加入 review 评审代码的地址:
+git remote add review ssh://refactor@review.bitcomm.cn:29418/testing.git
+scp -P 29418 refactor@review.bitcomm.cn:hooks/commit-msg .git/hooks/
+
+注意:
+选用自己需要的项目名称替代 testing
+使用自己的用户名替代 refactor
+
+4、日常的流程，需要修改一个bug，或者开发新功能时：
+
+获取最新的代码：
+
+git remote update
+git checkout master
+git pull origin master
+ 
+每一个开发（bug，feature），都创建一个分支，不要在 master上做，做完以后，递交评审，如果通过，自动合并到master分支：
+
+git checkout -b bug/typefix
+git checkout -b feature/login_module
+ 
+ 
+修改代码，然后递交：
+git commit –a
+注意写好递交日志。
+ 
+上传代码，等待评审：
+git push review HEAD:refs/for/master
+ 
+
+5、如果评审不通过，需要再次修改代码，则继续在原来的分支修改代码：
+
+git checkout bug/typefix
+修改代码…
+
+然后递交（注意，一定使用 amend选项，这样可以继续递交在原来的review单号上）
+
+git commit -a --amend
+git push review HEAD:refs/for/master
+ 
+
+如果代码审查通过，合并完成以后，可以删除这个分支：
+
+git branch -d fix/type
+
