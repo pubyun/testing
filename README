@@ -93,4 +93,6 @@ git pull origin master
 git checkout your-feature-branch
 git rebase -i master
 
+6.2 如果需要进行改版，会延续几个月的大量改进，则需要在 gerrit 评审系统内创建新的开发分支，而不使用 master 进行管理，以便进行代码的隔离。
+
 
