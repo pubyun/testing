@@ -82,3 +82,15 @@ git push review HEAD:refs/for/master
 
 git branch -d fix/type
 
+6、其他事项
+
+6.1 如果一个 feature 是一个需要较长时间开发，比如增加一个短信验证的功能，需要一周时间，则在自己的这个开发分支内，可以采取小步快跑的方式不断递交。在上传到 review服务器进行评审时，需要使用 rebase 命令，将这些多次递交适当进行合并然后上传。
+
+记住，每一次递交在Gerrit评审服务器上，都必须要单独评审审批，如果一个功能有很多小的修改组成，这些小的修改可以适当合并，具体方法是：
+
+git checkout master
+git pull origin master
+git checkout your-feature-branch
+git rebase -i master
+
+
