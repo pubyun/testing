@@ -95,4 +95,9 @@ git rebase -i master
 
 6.2 如果需要进行改版，会延续几个月的大量改进，则需要在 gerrit 评审系统内创建新的开发分支，而不使用 master 进行管理，以便进行代码的隔离。
 
+6.3 获取临时的代码
+如果其他人将代码上传到gerrit，但是还没有评审通过，这时，可以采用下面方法获取这个代码(每个评审单后都有链接)：
+
+git fetch ssh://refactor@review.bitcomm.cn:29418/testing refs/changes/07/7/1 && git checkout FETCH_HEAD
+
 
