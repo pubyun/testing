@@ -117,4 +117,7 @@ Settings - Watched Projects
 
 然后使用 Browse 按钮选择响应的项目，然后选择“Email Notifications”的类型，一般全部打勾
 
+6.5 gerrit评审系统的键盘快捷键
+gerrit是google开发的软件，同样支持Google风格的快捷键，类似Gmail的风格。使用快捷键，可以提高阅读和评审的速度。使用问号 "?" 可以寻求快捷键的帮助。
+
 
