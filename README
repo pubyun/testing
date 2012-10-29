@@ -110,4 +110,11 @@ git rebase -i master
 
 git fetch ssh://refactor@review.bitcomm.cn:29418/testing refs/changes/07/7/1 && git checkout FETCH_HEAD
 
+6.4 获取通知邮件
+对于关注的项目，可以获取通知邮件，方法是选择菜单：
+
+Settings - Watched Projects
+
+然后使用 Browse 按钮选择响应的项目，然后选择“Email Notifications”的类型，一般全部打勾
+
 
