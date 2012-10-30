@@ -8,6 +8,18 @@ ssh://git@git.bitcomm.cn:2203/testing.git
 http://review.openstack.org
 
 参考资料：
+
+pro git中文版, 最好的git书籍
+http://git-scm.com/book/zh
+图解git
+http://marklodato.github.com/visual-git-guide/index-zh-cn.html
+git交互式学习
+http://try.github.com/levels/1/challenges/1
+Git分支管理策略
+http://blog.jobbole.com/23398/
+
+gerrit 的参考：
+http://www.slideshare.net/lucamilanesio/gerrit-code-review
 http://qt-project.org/wiki/Gerrit-Introduction
 http://wiki.whamcloud.com/display/PUB/Using+Gerrit
 http://wiki.openstack.org/GerritWorkflow
@@ -15,6 +27,7 @@ http://wiki.openstack.org/GerritJenkinsGithub
 http://www.itk.org/Wiki/ITK/Git/Develop#Create_a_Topic
 http://openstack-ci.github.com/publications/jenkins/
 http://source.android.com/source/life-of-a-patch.html
+http://www.infoq.com/cn/articles/Gerrit-jenkins-hudson
 
 1、注册帐号
 
