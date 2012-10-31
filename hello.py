@@ -8,3 +8,5 @@ print "datetime: %s" % datetime.now()
 print "date: %s" % date.today()
 print "...."
 print "end"
+
+print "yangbo"
