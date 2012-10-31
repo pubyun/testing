@@ -17,10 +17,12 @@ git交互式学习
 http://try.github.com/levels/1/challenges/1
 Git分支管理策略
 http://blog.jobbole.com/23398/
+http://wiki.typo3.org/Git_Gerrit
 
 gerrit 的参考：
 http://www.slideshare.net/lucamilanesio/gerrit-code-review
 http://qt-project.org/wiki/Gerrit-Introduction
+http://wiki.typo3.org/Contribution_Walkthrough_with_CommandLine
 http://wiki.whamcloud.com/display/PUB/Using+Gerrit
 http://wiki.openstack.org/GerritWorkflow
 http://wiki.openstack.org/GerritJenkinsGithub
@@ -177,4 +179,15 @@ scp -P 29418 refactor@review.bitcomm.cn:hooks/commit-msg .git/hooks/
 然后再次递交：
 git commit -a --amend
 git push origin HEAD:refs/for/master
+
+8.2 Backporting a change to other branches
+http://wiki.typo3.org/Contribution_Walkthrough_with_CommandLine
+比如，一个master分支，一个release分支，递交进入master的分支中，有某个bugfix或者新特性需要合并回release分支：
+
+git fetch --all
+git checkout -b rfc/4-4/1234 origin/<release-branch>
+git cherry-pick <revision-id>
+去掉Change-Id, Reviewed-*, Tested-by等日志信息
+git commit -a --amend
+git push origin HEAD:refs/for/<release-branch>
 
