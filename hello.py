@@ -1,4 +1,12 @@
 #!/usr/bin/env python
+#-*- coding: utf-8 -*-
+"""
+测试模块，请尽量修改这个文件进行测试.
+
+Created on 2012-10-31
+
+@author: Peng Yong
+"""
 
 from datetime import datetime, date
 
