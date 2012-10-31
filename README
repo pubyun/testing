@@ -100,16 +100,34 @@ git checkout bug/typefix
 git commit -a --amend
 git push review HEAD:refs/for/master
 
-
 如果代码审查通过，合并完成以后，可以删除这个分支：
 
 git branch -d fix/type
 
-6、其他事项
+6. 审批通过以后，gerrit提示有冲突怎么办
+http://unethicalblogger.com/2010/04/02/a-rebase-based-workflow.html
+http://www.mediawiki.org/wiki/Gerrit/resolve_conflict
 
-6.1 版本管理规则
+冲突产生，是由于两个开发人员，修改了同一个文件。解决办法:
 
-6.1.1 一般线上运行的系统，只采用一个 master 主线的方式进行管理。
+git fetch origin
+git rebase origin/master
+
+git合并能力很强，一般的冲突上面可以自动解决了。如果冲突在同一个地方，需要手工解决。这个情况，请联系资深工程师帮助一起解决。需要用编辑器修改相应文件, 然后标志这个文件冲突解决，继续rebase：
+
+git add file_modified
+git rebase --continue
+
+如果有多个文件同时冲突，需要运行上述命令多次。然后递交审查：
+
+git commit -a --amend
+git push review HEAD:refs/for/master
+
+7、其他事项
+
+7.1 版本管理规则
+
+7.1.1 一般线上运行的系统，只采用一个 master 主线的方式进行管理。
 
 也就是开发人员的代码，通过评审以后，直接merge到master分支；master分支也是生产机上运行的代码。这就要求有质量控制过程，防止错误导致系统的严重错误。
 
@@ -117,7 +135,7 @@ git branch -d fix/type
 -- 递交的代码，要具有上线标准，要是一个可运行的合格的代码
 -- 评审一般都必须至少一个以上的人评审过，最好是同组的开发人员评审，项目经理或者资深开发人员审批。评审的过程，也是结对编程的思想，可以互相熟悉代码，互相学习提高，便于统一代码风格，提高代码质量。
 
-6.1.2 如果一个 feature 是一个需要较长时间开发，比如增加一个短信验证的功能，需要一周时间，则在自己的这个开发分支内，可以采取小步快跑的方式不断递交到本地的git。在开发完成以后，在上传到 review服务器进行评审前，需要使用 rebase 命令，将这些多次递交适当进行合并然后上传。
+7.1.2 如果一个 feature 是一个需要较长时间开发，比如增加一个短信验证的功能，需要一周时间，则在自己的这个开发分支内，可以采取小步快跑的方式不断递交到本地的git。在开发完成以后，在上传到 review服务器进行评审前，需要使用 rebase 命令，将这些多次递交适当进行合并然后上传。
 
 记住，每一次递交在Gerrit评审服务器上，都必须要单独评审审批，如果一个功能有很多小的修改组成，这些小的修改可以适当合并，具体方法是：
 
@@ -126,7 +144,7 @@ git pull origin master
 git checkout your-feature-branch
 git rebase -i master
 
-6.1.3 如果需要进行改版，会延续几个月的大量改进，则需要在 gerrit 评审系统内创建新的开发分支，比如devel分支，而不使用 master 进行管理，以便进行代码的隔离。改版完成以后，将代码从develp合并到master分支。
+7.1.3 如果需要进行改版，会延续几个月的大量改进，则需要在 gerrit 评审系统内创建新的开发分支，比如devel分支，而不使用 master 进行管理，以便进行代码的隔离。改版完成以后，将代码从develp合并到master分支。
 
 这时，改版递交代码和评审，都在develop分支进行，上传命令采用；
 
@@ -134,19 +152,19 @@ git push review HEAD:refs/for/develop
 
 生产机上任然使用 master分支。 这时，一般性的功能改进和bug修正，任然递交到 master 分支。并且定时从 master merge到develop分支，以便减少冲突，降低以后 develop合并到 master的难度。
 
-6.2 获取临时的代码
+7.2 获取临时的代码
 如果其他人将代码上传到gerrit，但是还没有评审通过，这时，可以采用下面方法获取这个代码(每个评审单后都有链接)：
 
 git fetch ssh://refactor@review.bitcomm.cn:29418/testing refs/changes/07/7/1 && git checkout FETCH_HEAD
 
-6.3 获取通知邮件
+7.3 获取通知邮件
 对于关注的项目，可以获取通知邮件，方法是选择菜单：
 
 Settings - Watched Projects
 
 然后使用 Browse 按钮选择响应的项目，然后选择“Email Notifications”的类型，一般全部打勾
 
-6.4 gerrit评审系统的键盘快捷键
+7.4 gerrit评审系统的键盘快捷键
 gerrit是google开发的软件，同样支持Google风格的快捷键，类似Gmail的风格。使用快捷键，可以提高阅读和评审的速度。使用问号 "?" 可以寻求快捷键的帮助。
 
 
