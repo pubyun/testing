@@ -10,7 +10,7 @@ Created on 2012-10-31
 
 from datetime import datetime, date
 
-print "begin"
+print "---------------begin---------------"
 print "hello world, gerrit2!"
 print "datetime: %s" % datetime.now()
 print "date: %s" % date.today()
