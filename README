@@ -168,3 +168,13 @@ Settings - Watched Projects
 gerrit是google开发的软件，同样支持Google风格的快捷键，类似Gmail的风格。使用快捷键，可以提高阅读和评审的速度。使用问号 "?" 可以寻求快捷键的帮助。
 
 
+8、FAQ
+8.1 提示"Missing Change-Id in commit message"
+这是由于没有下载hook, 生成Change-Id。这个Change-ID是gerrit一个必须的重要标志，多次修改同一个问题的时候，会对应到一个单子。解决方法。
+
+scp -P 29418 refactor@review.bitcomm.cn:hooks/commit-msg .git/hooks/
+
+然后再次递交：
+git commit -a --amend
+git push origin HEAD:refs/for/master
+
