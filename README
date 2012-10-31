@@ -31,7 +31,7 @@ http://www.infoq.com/cn/articles/Gerrit-jenkins-hudson
 
 1、注册帐号
 
-在 http://review.openstack.org 注册用户，采用的是openid，直接使用公司的google邮箱就可以了。
+在 http://review.bitcomm.cn 注册用户，采用的是openid，直接使用公司的google邮箱就可以了。
 
 注册的时候，注意:
 
