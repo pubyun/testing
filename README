@@ -191,3 +191,9 @@ git cherry-pick <revision-id>
 git commit -a --amend
 git push origin HEAD:refs/for/<release-branch>
 
+9、一些场景
+9.1 前端工程师如何递交代码？
+如果和程序员一起配合做一个功能，那么将代码交给程序员，开发、测试以后，一起作为一个原子操作递交。
+
+如果是前端修改一个错误或者改进，不需要和程序员配合，则直接递交。
+
