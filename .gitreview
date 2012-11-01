@@ -1,0 +1,5 @@
+[gerrit]
+host=review.bitcomm.cn
+port=29418
+project=testing.git
+defaultbranch=master
