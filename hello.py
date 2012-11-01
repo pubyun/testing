@@ -17,3 +17,4 @@ print "date: %s" % date.today()
 print "end"
 
 print "yangbo"
+print "lijie"
