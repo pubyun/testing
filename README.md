@@ -16,6 +16,10 @@
 
 <http://jenkins.bitcomm.cn>
 
+* github上的testing项目, 从gerrit自动同步到github
+
+<https://github.com/pubyun/testing>
+
 ## 参考资料：
 
 ### 有关git的参考资料
