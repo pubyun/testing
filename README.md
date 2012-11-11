@@ -219,6 +219,7 @@ git合并能力很强，一般的冲突上面可以自动解决了。如果冲�
 在gerrit上找到这个评审单，定位到响应的patchset，里面有获取代码、恢复分支的方式链接, 比如：
 
     git fetch ssh://refactor@review.bitcomm.cn:29418/testing refs/changes/07/7/1 && git checkout FETCH_HEAD
+    git checkout -b my_branch
 
 * 如何获取通知邮件
 
