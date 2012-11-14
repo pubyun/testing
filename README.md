@@ -267,3 +267,23 @@ gerrit是google开发的软件，同样支持Google风格的快捷键，类似Gm
 
 如果是前端修改一个错误或者改进，不需要和程序员配合，则直接递交。
 
+### 如何创建自己的开发分支，在不同工作场合切换时同步？
+
+由于git是点对点的模式，所以可以在任何一台有 ssh 帐号的机器上，创建自己的私有git软件库和开发分支。
+
+在ssh帐号上初始化一个开发分支
+
+    sh -p 22 refactor@192.168.99.1 "mkdir Project"
+    ssh -p 22 refactor@192.168.99.1 "git init --bare ~/Project/named.git"
+
+将私有的开发分支，推送到这个git库,如果有多个分支需要共享，就推送多个
+
+    git remote add myrepo ssh://refactor@192.168.99.1:22/home/refactor/Project/named.git
+    git push myrepo master
+    git push myrepo mybranch
+
+从其他地方获取这个分支, 并且切换到自己的开发分支
+
+    git clone ssh://refactor@192.168.99.1:22/home/refactor/Project/named.git
+    git checkout mybranch
+
