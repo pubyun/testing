@@ -50,6 +50,7 @@
 
 ### 有关gerrit 的参考资料
 
+* <http://gerrit-documentation.googlecode.com/svn/Documentation/2.5/intro-quick.html>
 * <http://www.slideshare.net/lucamilanesio/gerrit-code-review>
 * <http://qt-project.org/wiki/Gerrit-Introduction>
 * <http://wiki.typo3.org/Contribution_Walkthrough_with_CommandLine>
