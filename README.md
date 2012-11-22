@@ -128,6 +128,10 @@
 本地递交代码:
 
     git commit –a
+    
+如果要放弃commit，使用 ：
+	
+	git reset --soft HEAD^
 
 注意，看一下这些文件是否都要递交，写好简要、清晰的递交日志。
 
@@ -171,7 +175,10 @@
     git rebase origin/master
 
 git合并能力很强，一般的冲突上面可以自动解决了。如果冲突在同一个地方，需要手工解决。这个情况，请联系资深工程师帮助一起解决。需要用编辑器修改相应文件, 然后标志这个文件冲突解决，继续rebase：
-
+	
+	标记冲突：
+		git add -u
+		
     git add file_modified
     git rebase --continue
 
