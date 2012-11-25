@@ -264,6 +264,18 @@ git合并能力很强，一般的冲突上面可以自动解决了。如果冲�
     git rebase -i HEAD~10
     git review
 
+## fabric的使用
+
+为了提供工作效率，降低出错的几率，重复性的工作，尽量使用 fabric自动部署工具：
+
+* 生产机上的部署
+
+    fab
+
+* 测试分支的部署
+
+    fab branch:dev/refactor/fabric deploy
+
 ## 版本管理规则
 
 ### 一般线上运行的系统，只采用一个 master 主线的方式进行管理
