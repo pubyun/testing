@@ -135,7 +135,11 @@ windows下的图形工具：
 
 注意选用自己需要的项目名称替代 testing
 
-加入 review 评审代码的地址:
+设置git review 系统, 第一次需要回答一个用户名，就是你在review系统的用户名
+
+    git review -s
+
+如果没有安装 git review 软件包，则手工设置：
 
     git remote add gerrit ssh://refactor@review.bitcomm.cn:29418/testing.git
     scp -P 29418 refactor@review.bitcomm.cn:hooks/commit-msg .git/hooks/
@@ -151,17 +155,16 @@ windows下的图形工具：
 
 获取最新的代码, 防止和他人冲突
 
-    git remote update
-    git checkout master
-    git pull origin master
+    git fetch origin
 
-每一个开发（bug，feature），都创建一个独立的分支，不要在 master上做，一般一个单元开发创建一个分支，互相不混淆。否则如果评审不通过，重新修改会麻烦：
+每一个开发（bug，feature），都创建一个独立的开发分支，不要在 master上做，一般一个单元开发创建一个分支，互相不混淆。否则如果评审不通过，重新修改会麻烦：
 
-    git checkout -b bug/typefix
-    git checkout -b feature/login_module
+    git checkout -b dev/username/typefix
+    git checkout -b dev/username/login_module
 
 修改代码，然后检查代码：
 
+    git status
     git diff
 
 如果要放弃commit，使用 ：
@@ -176,12 +179,16 @@ windows下的图形工具：
 
 上传代码，等待评审：
 
+    git review
+
+如果没有安装 git review 软件，则手工上传，等待评审：
+
     git push gerrit HEAD:refs/for/master
 
 如果代码审查通过，合并完成以后，可以删除这个分支：
 
     git checkout master
-    git branch -d bug/typefix
+    git branch -d dev/username/typefix
 
 ## 如果评审不通过，需要再次修改代码，则继续在原来的分支修改代码
 
@@ -194,6 +201,13 @@ windows下的图形工具：
 然后递交（注意，一定使用 amend选项，这样可以继续递交在原来的review单号上）
 
     git commit -a --amend
+
+上传代码等待审批
+
+    git review
+
+如果没有安装 git review 软件，则手工上传，等待评审：
+
     git push gerrit HEAD:refs/for/master
 
 如果代码审查通过，合并完成以后，可以删除这个分支：
@@ -221,7 +235,7 @@ git合并能力很强，一般的冲突上面可以自动解决了。如果冲�
 最后递交审查：
 
     git commit -a --amend
-    git push gerrit HEAD:refs/for/master
+    git review
 
 ## 私有分支的使用
 
@@ -312,7 +326,7 @@ git合并能力很强，一般的冲突上面可以自动解决了。如果冲�
 
 这时，改版递交代码和评审，都在develop分支进行，上传命令采用；
 
-    git push gerrit HEAD:refs/for/develop
+    git review develop
 
 生产机上任然使用 master分支。 这时，一般性的功能改进和bug修正，仍然递交到 master 分支。并且定时从 master merge到develop分支，以便减少冲突，降低以后 develop合并到 master的难度。
 
@@ -346,7 +360,7 @@ gerrit是google开发的软件，同样支持Google风格的快捷键，类似Gm
 然后再次递交：
 
     git commit -a --amend
-    git push origin HEAD:refs/for/master
+    git review
 
 * Backporting a change to other branches
 
@@ -361,7 +375,7 @@ gerrit是google开发的软件，同样支持Google风格的快捷键，类似Gm
 去掉Change-Id, Reviewed-*, Tested-by等日志信息
 
     git commit -a --amend
-    git push origin HEAD:refs/for/<release-branch>
+    git review <release-branch>
 
 ## 一些场景
 
