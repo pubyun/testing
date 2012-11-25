@@ -84,20 +84,23 @@
 
 由于目前git的命令行功能和稳定性比图形界面的egit等强，大家在代码递交时，还是使用Windows或者Linux的命令行，windows下可以采用：
 
-windows下的命令行工具：  
+windows下的命令行工具：
+
 <http://msysgit.github.com>  
-windows下的图形工具：  
+
+windows下的图形工具：
+
 <https://code.google.com/p/tortoisegit/>
 
-* 下载安装windows版本的python，一般可以选用2.7.3
+下载安装windows版本的python，一般可以选用2.7.3
 
 <http://www.python.org/download/releases/2.7.3/>
 
-* 下载安装windows版本的setuptools
+下载安装windows版本的setuptools
 
 <http://pypi.python.org/pypi/setuptools>
 
-* 下载、解压、安装 pip 软件
+下载、解压、安装 pip 软件
 
 <http://pypi.python.org/pypi/pip#downloads>
 
@@ -105,7 +108,7 @@ windows下的图形工具：
 
     python setup.py install
 
-* 安装 fabric 和 git-review
+使用pip安装 fabric 和 git-review
 
     pip install fabric git-review
 
@@ -222,7 +225,7 @@ git合并能力很强，一般的冲突上面可以自动解决了。如果冲�
 
 ## 私有分支的使用
 
-私人分支的应用场景
+私有分支的应用场景
     
 1. 在正式递交代码之前，开发调试往往需要和同事协同开发
 2. 需要部署到测试机上进行测试, 但又不想递交到master
@@ -231,24 +234,27 @@ git合并能力很强，一般的冲突上面可以自动解决了。如果冲�
 
 这时就需要使用gerrit的私有分支, 具体的步骤是：
 
-* 私有分支的命名：
+私有分支的命名：
 
-    dev/username/branchname
-    dev 私有开发分支的前缀，必须是 dev
-    username 你的 gerrit系统的用户名
-    branchname 你创建的私有分支名字，可以创建多个分支
+	dev/username/branchname
 
-* 创建本地的私有分支
+其中：
+
+* dev 私有开发分支的前缀，必须是 dev
+* username 你的 gerrit系统的用户名
+* branchname 你创建的私有分支名字，可以创建多个分支
+
+创建本地的私有分支
 
     git checkout -b dev/refactor/fabric
 
-* 开发，然后递交到本地
+开发，然后递交到本地，这个和普通开发一样
 
-* 上传到 gerrit，并自动同步到 公司的官方git源（一般叫origin)
+上传到 gerrit，并自动同步到 公司的官方git源（一般叫origin)
 
     git push gerrit HEAD:dev/refactor/fabric
 
-* 其他同事切换到这个私有分支，并且获取刚才的修改
+其他同事切换到这个私有分支，并且获取刚才的修改
 
     git fetch origin
     git checkout dev/refactor/fabric
@@ -256,12 +262,12 @@ git合并能力很强，一般的冲突上面可以自动解决了。如果冲�
 
 在这里可以进行修改和递交，实现协同开发和代码同步
 
-* 这个分支，经过测试以后，准备递交评审之前，一般使用 rebase 进行适当的合并, 然后递交
+这个分支，经过测试以后，准备递交评审之前，一般使用 rebase 进行适当的合并, 然后递交
 
     git rebase -i HEAD~10
     git review
 
-* 如果这个分支不再需要了，删除这个分支(本地和远程)
+如果这个分支不再需要了，删除这个分支(本地和远程)
 
     git push gerrit :dev/refactor/fabric
     git checkout master
