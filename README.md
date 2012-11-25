@@ -81,20 +81,24 @@
 ### Windows
 
 * 安装git 工具
+
 由于目前git的命令行功能和稳定性比图形界面的egit等强，大家在代码递交时，还是使用Windows或者Linux的命令行，windows下可以采用：
 
-windows下的命令行工具：
-<http://msysgit.github.com>
-windows下的图形工具：
+windows下的命令行工具：  
+<http://msysgit.github.com>  
+windows下的图形工具：  
 <https://code.google.com/p/tortoisegit/>
 
 * 下载安装windows版本的python，一般可以选用2.7.3
+
 <http://www.python.org/download/releases/2.7.3/>
 
 * 下载安装windows版本的setuptools
+
 <http://pypi.python.org/pypi/setuptools>
 
 * 下载、解压、安装 pip 软件
+
 <http://pypi.python.org/pypi/pip#downloads>
 
 进入解压以后的目录，然后执行安装：
@@ -235,11 +239,9 @@ git合并能力很强，一般的冲突上面可以自动解决了。如果冲�
 * 私有分支的命名：
 
     dev/username/branchname
-    
-    其中：
-        dev
-        username 你的 gerrit系统的用户名
-        branchname 你创建的私有分支名字，可以创建多个分支
+    dev 私有开发分支的前缀，必须是 dev
+    username 你的 gerrit系统的用户名
+    branchname 你创建的私有分支名字，可以创建多个分支
 
 * 创建本地的私有分支
 
@@ -263,6 +265,12 @@ git合并能力很强，一般的冲突上面可以自动解决了。如果冲�
 
     git rebase -i HEAD~10
     git review
+
+* 如果这个分支不再需要了，删除这个分支(本地和远程)
+
+    git push gerrit :dev/refactor/fabric
+    git checkout master
+    git branch -d dev/refactor/fabric
 
 ## fabric的使用
 
