@@ -137,7 +137,7 @@ windows下的图形工具：
 
 加入 review 评审代码的地址:
 
-    git remote add review ssh://refactor@review.bitcomm.cn:29418/testing.git
+    git remote add gerrit ssh://refactor@review.bitcomm.cn:29418/testing.git
     scp -P 29418 refactor@review.bitcomm.cn:hooks/commit-msg .git/hooks/
 
 注意:
@@ -176,7 +176,7 @@ windows下的图形工具：
 
 上传代码，等待评审：
 
-    git push review HEAD:refs/for/master
+    git push gerrit HEAD:refs/for/master
 
 如果代码审查通过，合并完成以后，可以删除这个分支：
 
@@ -194,7 +194,7 @@ windows下的图形工具：
 然后递交（注意，一定使用 amend选项，这样可以继续递交在原来的review单号上）
 
     git commit -a --amend
-    git push review HEAD:refs/for/master
+    git push gerrit HEAD:refs/for/master
 
 如果代码审查通过，合并完成以后，可以删除这个分支：
 
@@ -221,7 +221,7 @@ git合并能力很强，一般的冲突上面可以自动解决了。如果冲�
 最后递交审查：
 
     git commit -a --amend
-    git push review HEAD:refs/for/master
+    git push gerrit HEAD:refs/for/master
 
 ## 私有分支的使用
 
@@ -312,7 +312,7 @@ git合并能力很强，一般的冲突上面可以自动解决了。如果冲�
 
 这时，改版递交代码和评审，都在develop分支进行，上传命令采用；
 
-    git push review HEAD:refs/for/develop
+    git push gerrit HEAD:refs/for/develop
 
 生产机上任然使用 master分支。 这时，一般性的功能改进和bug修正，仍然递交到 master 分支。并且定时从 master merge到develop分支，以便减少冲突，降低以后 develop合并到 master的难度。
 
