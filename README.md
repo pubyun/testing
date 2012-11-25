@@ -76,12 +76,44 @@
 注册的邮箱、ssh公钥和对应的项目
 
 
-## 工具
+## 工具安装
 
+### Windows
+
+* 安装git 工具
 由于目前git的命令行功能和稳定性比图形界面的egit等强，大家在代码递交时，还是使用Windows或者Linux的命令行，windows下可以采用：
 
+windows下的命令行工具：
 <http://msysgit.github.com>
+windows下的图形工具：
+<https://code.google.com/p/tortoisegit/>
 
+* 下载安装windows版本的python，一般可以选用2.7.3
+<http://www.python.org/download/releases/2.7.3/>
+
+* 下载安装windows版本的setuptools
+<http://pypi.python.org/pypi/setuptools>
+
+* 下载、解压、安装 pip 软件
+<http://pypi.python.org/pypi/pip#downloads>
+
+进入解压以后的目录，然后执行安装：
+
+    python setup.py install
+
+* 安装 fabric 和 git-review
+
+    pip install fabric git-review
+
+### Ubuntu
+
+    sudo aptitude install python-pip
+    sudo pip install fabric git-review
+    
+### CentOS
+
+    sudo yum -y install python-setuptools  python-devel python-pip
+    sudo pip-python install fabric git-review
 
 ## 导出项目，初始设置
 
