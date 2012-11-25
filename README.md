@@ -221,6 +221,49 @@ git合并能力很强，一般的冲突上面可以自动解决了。如果冲�
     git commit -a --amend
     git push review HEAD:refs/for/master
 
+## 私有分支的使用
+
+私人分支的应用场景
+    
+1. 在正式递交代码之前，开发调试往往需要和同事协同开发
+2. 需要部署到测试机上进行测试, 但又不想递交到master
+3. 个人在公司、家里、工地进行代码的同步
+4. 个人需要开发一个较复杂的功能，在递交评审之前，需要频繁递交代码, 并且为了代码安全性，需要上传到远程备份
+
+这时就需要使用gerrit的私有分支, 具体的步骤是：
+
+* 私有分支的命名：
+
+    dev/username/branchname
+    
+    其中：
+        dev
+        username 你的 gerrit系统的用户名
+        branchname 你创建的私有分支名字，可以创建多个分支
+
+* 创建本地的私有分支
+
+    git checkout -b dev/refactor/fabric
+
+* 开发，然后递交到本地
+
+* 上传到 gerrit，并自动同步到 公司的官方git源（一般叫origin)
+
+    git push gerrit HEAD:dev/refactor/fabric
+
+* 其他同事切换到这个私有分支，并且获取刚才的修改
+
+    git fetch origin
+    git checkout dev/refactor/fabric
+    git pull
+
+在这里可以进行修改和递交，实现协同开发和代码同步
+
+* 这个分支，经过测试以后，准备递交评审之前，一般使用 rebase 进行适当的合并, 然后递交
+
+    git rebase -i HEAD~10
+    git review
+
 ## 版本管理规则
 
 ### 一般线上运行的系统，只采用一个 master 主线的方式进行管理
@@ -306,24 +349,4 @@ gerrit是google开发的软件，同样支持Google风格的快捷键，类似Gm
 如果和程序员一起配合做一个功能，那么将代码交给程序员，开发、测试以后，一起作为一个原子操作递交。
 
 如果是前端修改一个错误或者改进，不需要和程序员配合，则直接递交。
-
-### 如何创建自己的开发分支，在不同工作场合切换时同步？
-
-由于git是点对点的模式，所以可以在任何一台有 ssh 帐号的机器上，创建自己的私有git软件库和开发分支。
-
-在ssh帐号上初始化一个开发分支
-
-    sh -p 22 refactor@192.168.99.1 "mkdir Project"
-    ssh -p 22 refactor@192.168.99.1 "git init --bare ~/Project/named.git"
-
-将私有的开发分支，推送到这个git库,如果有多个分支需要共享，就推送多个
-
-    git remote add myrepo ssh://refactor@192.168.99.1:22/home/refactor/Project/named.git
-    git push myrepo master
-    git push myrepo mybranch
-
-从其他地方获取这个分支, 并且切换到自己的开发分支
-
-    git clone ssh://refactor@192.168.99.1:22/home/refactor/Project/named.git
-    git checkout mybranch
 
