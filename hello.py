@@ -18,3 +18,4 @@ print "end"
 
 print "test of pengyong"
 print "migrating..."
+print "test of gpg signs"
