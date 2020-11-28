@@ -16,8 +16,6 @@ print "datetime: %s" % datetime.now()
 print "date: %s" % date.today()
 print "end"
 
-print "yangbo"
-print "lijie"
 print "zhoujing2012.11.01"
 print "wzl"
 print "zhoujing2012.11.02"
